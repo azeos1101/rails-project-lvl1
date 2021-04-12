@@ -6,5 +6,8 @@ require 'form_gen/form'
 
 module FormGen
   class Error < StandardError; end
-  # Your code goes here...
+
+  def form_for(_record, _attrs)
+    Form.new.to_s
+  end
 end
