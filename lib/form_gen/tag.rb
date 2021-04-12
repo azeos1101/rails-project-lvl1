@@ -2,11 +2,11 @@ module FormGen
   class Tag
     SELF_CLOSING = %i[area base br col embed hr img input link meta param source track wbr]
 
-    attr_reader :name, :attrs
+    attr_reader :name, :attributes
 
     def initialize(tag_name, **attrs)
       @name = tag_name
-      @attrs = (attrs || {})
+      @attributes = (attrs || {})
     end
 
     def to_s
@@ -16,12 +16,14 @@ module FormGen
     private
 
     def render_self_closing
-      attributes = attrs.map {|key, value| %Q[#{key}="#{value}"] }.join(' ')
-      "<#{name} #{attributes} />"
+      tag_attrs = attributes.map {|key, value| %Q[#{key}="#{value}"] }
+      ["<#{name}", *tag_attrs, "/>"].compact.join(' ')
     end
 
     def render_closing
-      ''
+      values = Array(attributes[:value]).compact.map(&:to_s)
+      tag_attrs = attributes.filter {|key, _v| key != :value }.map {|key, value| %Q[#{key}="#{value}"] }.join(' ')
+      ["<#{name} #{tag_attrs}>", *values, "</#{name}>"].join
     end
   end
 end

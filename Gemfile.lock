@@ -6,12 +6,24 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
+    activemodel (4.2.11.3)
+      activesupport (= 4.2.11.3)
+      builder (~> 3.1)
+    activesupport (4.2.11.3)
+      i18n (~> 0.7)
+      minitest (~> 5.1)
+      thread_safe (~> 0.3, >= 0.3.4)
+      tzinfo (~> 1.1)
     ast (2.4.2)
+    builder (3.2.4)
     childprocess (4.0.0)
     colorize (0.8.1)
+    concurrent-ruby (1.1.8)
     fasterer (0.9.0)
       colorize (~> 0.7)
       ruby_parser (>= 3.14.1)
+    i18n (0.9.5)
+      concurrent-ruby (~> 1.0)
     iniparse (1.5.0)
     minitest (5.14.4)
     overcommit (0.57.0)
@@ -39,12 +51,16 @@ GEM
     ruby_parser (3.15.1)
       sexp_processor (~> 4.9)
     sexp_processor (4.15.2)
+    thread_safe (0.3.6)
+    tzinfo (1.2.9)
+      thread_safe (~> 0.1)
     unicode-display_width (2.0.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  activemodel (~> 4.2, >= 4.2.6)
   azeos-form-gen-lvl1!
   fasterer
   minitest (~> 5.0)
