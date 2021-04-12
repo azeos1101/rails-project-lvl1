@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'form_gen/version'
 require 'form_gen/tag'
 require 'form_gen/form'

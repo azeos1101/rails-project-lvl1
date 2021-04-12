@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'lib/form_gen/version'
 
 Gem::Specification.new do |spec|
@@ -10,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.description   = 'First study project for Ruby on Rails'
   spec.homepage      = 'https://github.com/azeos1101/rails-project-lvl1'
   spec.license       = 'MIT'
-  spec.required_ruby_version = Gem::Requirement.new('>= 2.3.0')
+  spec.required_ruby_version = Gem::Requirement.new('>= 2.7.0')
 
   # spec.metadata["allowed_push_host"] = "TODO: Set to 'http://mygemserver.com'"
 

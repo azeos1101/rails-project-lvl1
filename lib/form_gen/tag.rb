@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 module FormGen
   class Tag
-    SELF_CLOSING = %i[area base br col embed hr img input link meta param source track wbr]
+    SELF_CLOSING = %i[area base br col embed hr img input link meta param source track wbr].freeze
 
     attr_reader :name, :attributes
 
