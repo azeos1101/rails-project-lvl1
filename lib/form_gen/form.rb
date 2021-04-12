@@ -20,7 +20,7 @@ module FormGen
       form_attrs = attrs || {}
       default_values = { action: '#', method: 'post' }
 
-      default_values.merge **form_attrs
+      default_values.merge(**form_attrs)
     end
   end
 end

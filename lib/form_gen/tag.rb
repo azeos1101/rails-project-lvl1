@@ -16,13 +16,13 @@ module FormGen
     private
 
     def render_self_closing
-      tag_attrs = attributes.map {|key, value| %Q[#{key}="#{value}"] }
-      ["<#{name}", *tag_attrs, "/>"].compact.join(' ')
+      tag_attrs = attributes.map { |key, value| %(#{key}="#{value}") }
+      ["<#{name}", *tag_attrs, '/>'].compact.join(' ')
     end
 
     def render_closing
       values = Array(attributes[:value]).compact.map(&:to_s)
-      tag_attrs = attributes.filter {|key, _v| key != :value }.map {|key, value| %Q[#{key}="#{value}"] }.join(' ')
+      tag_attrs = attributes.filter { |key, _v| key != :value }.map { |key, value| %(#{key}="#{value}") }.join(' ')
       ["<#{name} #{tag_attrs}>", *values, "</#{name}>"].join
     end
   end

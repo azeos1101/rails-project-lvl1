@@ -1,4 +1,4 @@
-require "test_helper"
+require 'test_helper'
 
 class FormGen::TagTest < Minitest::Test
   def test_generation_valid_self_closing_tag

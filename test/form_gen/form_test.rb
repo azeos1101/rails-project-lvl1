@@ -1,4 +1,4 @@
-require "test_helper"
+require 'test_helper'
 
 class FormGen::FormTest < Minitest::Test
   def test_generation_blank_form
