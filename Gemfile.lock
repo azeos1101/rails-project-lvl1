@@ -1,0 +1,72 @@
+PATH
+  remote: .
+  specs:
+    azeos-form-gen-lvl1 (0.0.1)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    activemodel (4.2.11.3)
+      activesupport (= 4.2.11.3)
+      builder (~> 3.1)
+    activesupport (4.2.11.3)
+      i18n (~> 0.7)
+      minitest (~> 5.1)
+      thread_safe (~> 0.3, >= 0.3.4)
+      tzinfo (~> 1.1)
+    ast (2.4.2)
+    builder (3.2.4)
+    childprocess (4.0.0)
+    colorize (0.8.1)
+    concurrent-ruby (1.1.8)
+    fasterer (0.9.0)
+      colorize (~> 0.7)
+      ruby_parser (>= 3.14.1)
+    i18n (0.9.5)
+      concurrent-ruby (~> 1.0)
+    iniparse (1.5.0)
+    minitest (5.14.4)
+    overcommit (0.57.0)
+      childprocess (>= 0.6.3, < 5)
+      iniparse (~> 1.4)
+    parallel (1.20.1)
+    parser (3.0.1.0)
+      ast (~> 2.4.1)
+    rainbow (3.0.0)
+    rake (12.3.3)
+    regexp_parser (2.1.1)
+    rexml (3.2.5)
+    rubocop (1.12.1)
+      parallel (~> 1.10)
+      parser (>= 3.0.0.0)
+      rainbow (>= 2.2.2, < 4.0)
+      regexp_parser (>= 1.8, < 3.0)
+      rexml
+      rubocop-ast (>= 1.2.0, < 2.0)
+      ruby-progressbar (~> 1.7)
+      unicode-display_width (>= 1.4.0, < 3.0)
+    rubocop-ast (1.4.1)
+      parser (>= 2.7.1.5)
+    ruby-progressbar (1.11.0)
+    ruby_parser (3.15.1)
+      sexp_processor (~> 4.9)
+    sexp_processor (4.15.2)
+    thread_safe (0.3.6)
+    tzinfo (1.2.9)
+      thread_safe (~> 0.1)
+    unicode-display_width (2.0.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  activemodel (~> 4.2, >= 4.2.6)
+  azeos-form-gen-lvl1!
+  fasterer
+  minitest (~> 5.0)
+  overcommit
+  rake (~> 12.0)
+  rubocop
+
+BUNDLED WITH
+   2.1.4
