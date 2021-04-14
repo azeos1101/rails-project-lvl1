@@ -16,7 +16,10 @@ module FormGen
     end
 
     def to_s
-      SELF_CLOSING.include?(name.to_sym) ? render_self_closing : render_closing
+      return render_select_option if name == :option
+      return render_self_closing if SELF_CLOSING.include?(name.to_sym)
+
+      render_closing
     end
 
     private
@@ -31,6 +34,13 @@ module FormGen
       string_values = values.map(&:to_s)
       tag_attrs = attributes.filter { |key, _v| key != :value }.map { |key, value| %(#{key}="#{value}") }.join(' ')
       ["<#{name} #{tag_attrs}>", *string_values, "</#{name}>"].join
+    end
+
+    def render_select_option
+      tag_attrs = attributes.map { |key, value| %(#{key}="#{value}") }
+      value = values.first
+      tag_attrs << "value=\"#{value}\""
+      ["<#{name} #{tag_attrs.join(' ')}>", value, "</#{name}>"].join
     end
   end
 end

@@ -45,34 +45,38 @@ class FormGenTest < Minitest::Test
     assert_equal expected_html, result_form
   end
 
-  def test_form_with_textarea
+  def test_form_with_textarea # rubocop:disable Metrics/MethodLength
     expected_html = '<form action="/users/new" method="post">'\
-                      '<textarea cols="20" rows="40" name="user_test[description]" id="user_test_description">'\
+                      '<input name="user_test[name]" id="user_test_name" type="text" value="Vasya" />'\
+                          '<textarea cols="20" rows="40" name="user_test[description]" id="user_test_description">'\
                         'Hexlet Form'\
                       '</textarea>'\
                     '</form>'
 
     result_form = form_for @user, url: '/users/new' do |f|
+      f.input :name
       f.input :description, as: :text
     end
 
     assert_equal expected_html, result_form
   end
 
-  # def test_form_with_select
-  #   expected_html = '<form action="#" method="post">'\
-  #                     '<input name="user_test[name]" id="user_test_name" type="text" value="">'\
-  #                     '<select name="user_test[age]" id="user_test_age">'\
-  #                       '<option value=""></option>'\
-  #                       '<option value="18">18</option>'\
-  #                       '<option value="19">19</option>'\
-  #                       '<option value="20">20</option>'\
-  #                     '</select>'\
-  #                   '</form>'
+  def test_form_with_select # rubocop:disable Metrics/MethodLength
+    expected_html = '<form action="#" method="post">'\
+                      '<input name="user_test[name]" id="user_test_name" type="text" value="Vasya" />'\
+                      '<select name="user_test[age]" id="user_test_age">'\
+                        '<option value=""></option>'\
+                        '<option value="18">18</option>'\
+                        '<option value="19">19</option>'\
+                        '<option value="20">20</option>'\
+                      '</select>'\
+                    '</form>'
 
-  #   result_form = form_for @user, url: '#' do |f|
-  #     f.input :name
-  #     f.input :age, as: :select, collection: 18..20
-  #   end
-  # end
+    result_form = form_for @user, url: '#' do |f|
+      f.input :name
+      f.input :age, as: :select, collection: 18..20
+    end
+
+    assert_equal expected_html, result_form
+  end
 end

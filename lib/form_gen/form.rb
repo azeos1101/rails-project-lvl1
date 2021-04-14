@@ -34,12 +34,19 @@ module FormGen
       new_attrs = extract_attrs(attr_name, attrs)
 
       case tag_type&.to_sym
-      when :text
-        -> { Tag.new(:textarea, cols: '20', rows: '40', **new_attrs) }
+      when :text then -> { Tag.new(:textarea, cols: '20', rows: '40', **new_attrs) }
+      when :select then select_builder(new_attrs)
       else
         new_attrs[:type] = record.type_for_attribute(attr_name)
         -> { Tag.new(:input, **new_attrs) }
       end
+    end
+
+    def select_builder(new_attrs)
+      collection = [nil, *(new_attrs.delete(:collection) || [])] # with blank first value
+      new_attrs[:value] = collection.map { |value| Tag.new(:option, value: value) }
+
+      -> { Tag.new(:select, **new_attrs) }
     end
 
     def extract_attrs(attr_name, attrs)
@@ -51,7 +58,6 @@ module FormGen
 
     def attributes_with_defaults(attrs)
       form_attrs = attrs || {}
-      # default_values = { method: 'post' }
       form_attrs[:action] = form_attrs.delete(:url) || '#'
       form_attrs[:method] ||= 'post'
 
