@@ -16,17 +16,21 @@ module FormGen
       tag.to_s
     end
 
-    def input(field_name, **attrs)
+    def input(attr_name, **attrs)
       return unless record.respond_to? :model_name
 
       model_name = record.model_name.singular
-      new_tag = Tag.new(:input, name: "#{model_name}[#{field_name}]", id: "#{model_name}_#{field_name}", **attrs)
+      new_attrs = attrs.merge(type: record.type_for_attribute(attr_name))
+      new_tag = Tag.new(:input,
+                        name: "#{model_name}[#{attr_name}]",
+                        id: "#{model_name}_#{attr_name}",
+                        **new_attrs)
       tag.values << new_tag
     end
 
-    def hidden_input(field_name, **attrs)
+    def hidden_input(attr_name, **attrs)
       new_attrs = attrs.merge(type: 'hidden')
-      input(field_name, **new_attrs)
+      input(attr_name, **new_attrs)
     end
 
     private
