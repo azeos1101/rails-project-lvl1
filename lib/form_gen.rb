@@ -9,7 +9,7 @@ module FormGen
 
   def form_for(record, attrs)
     form = Form.new(record: record, **attrs)
-    yield form
+    yield form if block_given?
     form.to_s
   end
 end
