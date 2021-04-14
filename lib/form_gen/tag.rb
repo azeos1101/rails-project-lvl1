@@ -2,6 +2,7 @@
 
 module FormGen
   class Tag
+    # https://www.w3.org/TR/2011/WD-html-markup-20110113/syntax.html#syntax-elements
     SELF_CLOSING = %i[area base br col embed hr img input link meta param source track wbr].freeze
 
     attr_reader :name, :attributes
