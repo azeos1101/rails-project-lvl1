@@ -34,8 +34,10 @@ module FormGen
       new_attrs = extract_attrs(attr_name, attrs)
 
       case tag_type&.to_sym
-      when :text then -> { Tag.new(:textarea, cols: '20', rows: '40', **new_attrs) }
-      when :select then select_builder(new_attrs)
+      when :text
+        -> { Tag.new(:textarea, cols: '20', rows: '40', **new_attrs) }
+      when :select
+        select_builder(new_attrs)
       else
         new_attrs[:type] = record.type_for_attribute(attr_name)
         -> { Tag.new(:input, **new_attrs) }
