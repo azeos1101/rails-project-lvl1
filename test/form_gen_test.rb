@@ -16,8 +16,15 @@ class FormGenTest < Minitest::Test
 
   def test_form_generation
     user = User.new
-    expected_html = '<form action="#" method="post"></form>'
-    result_form = form_for user, url: '/users/new'
+    expected_html = '<form action="#" method="post">'\
+                    '<input name="user[id]" id="user_id" />'\
+                    '<input name="user[id]" id="user_id" type="hidden" />'\
+                    '</form>'
+
+    result_form = form_for user, url: '/users/new' do |f|
+      f.input :id
+      f.hidden_input :id
+    end
 
     assert_equal expected_html, result_form
   end
