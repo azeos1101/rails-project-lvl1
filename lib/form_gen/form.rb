@@ -19,13 +19,7 @@ module FormGen
     def input(attr_name, **attrs)
       return unless record.respond_to? :model_name
 
-      model_name = record.model_name.singular
-      new_attrs = attrs.merge(type: record.type_for_attribute(attr_name))
-      new_tag = Tag.new(:input,
-                        name: "#{model_name}[#{attr_name}]",
-                        id: "#{model_name}_#{attr_name}",
-                        **new_attrs)
-      tag.values << new_tag
+      tag.values << tag_builder(attr_name, attrs).call
     end
 
     def hidden_input(attr_name, **attrs)
@@ -34,6 +28,26 @@ module FormGen
     end
 
     private
+
+    def tag_builder(attr_name, attrs)
+      tag_type = attrs.delete(:as)
+      new_attrs = extract_attrs(attr_name, attrs)
+
+      case tag_type&.to_sym
+      when :text
+        -> { Tag.new(:textarea, cols: '20', rows: '40', **new_attrs) }
+      else
+        new_attrs[:type] = record.type_for_attribute(attr_name)
+        -> { Tag.new(:input, **new_attrs) }
+      end
+    end
+
+    def extract_attrs(attr_name, attrs)
+      model_name = record.model_name.singular
+      attrs.merge(name: "#{model_name}[#{attr_name}]",
+                  id: "#{model_name}_#{attr_name}",
+                  value: record.public_send(attr_name))
+    end
 
     def attributes_with_defaults(attrs)
       form_attrs = attrs || {}
