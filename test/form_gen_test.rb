@@ -7,7 +7,7 @@ class FormGenTest < Minitest::Test
 
   def setup
     super
-    @expected_html = '<form action="#" method="post">'\
+    @expected_html = '<form action="/users/new" method="post">'\
                         '<input name="user_test[id]" id="user_test_id" type="hidden" value="12345" />'\
                         '<input name="user_test[name]" id="user_test_name" type="text" value="Vasya" />'\
                         '<textarea cols="20" rows="40" name="user_test[description]" id="user_test_description">'\

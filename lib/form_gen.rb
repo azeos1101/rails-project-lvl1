@@ -7,8 +7,8 @@ require 'form_gen/form'
 module FormGen
   class Error < StandardError; end
 
-  def form_for(record, _attrs)
-    form = Form.new(record: record)
+  def form_for(record, attrs)
+    form = Form.new(record: record, **attrs)
     yield form
     form.to_s
   end

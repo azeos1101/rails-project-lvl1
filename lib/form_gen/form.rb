@@ -51,9 +51,11 @@ module FormGen
 
     def attributes_with_defaults(attrs)
       form_attrs = attrs || {}
-      default_values = { action: '#', method: 'post' }
+      # default_values = { method: 'post' }
+      form_attrs[:action] = form_attrs.delete(:url) || '#'
+      form_attrs[:method] ||= 'post'
 
-      default_values.merge(**form_attrs)
+      form_attrs
     end
   end
 end
