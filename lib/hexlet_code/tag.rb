@@ -2,41 +2,31 @@
 
 module HexletCode
   class Tag
-    # List of self closing elements
-    # https://www.w3.org/TR/2011/WD-html-markup-20110113/syntax.html#syntax-elements
-    SELF_CLOSING = %i[area base br col embed hr img input link meta param source track wbr].freeze
-
-    attr_reader :name, :attributes
-    attr_accessor :values
-
-    def initialize(tag_name, **attrs)
-      @name = tag_name
-      @values = Array(attrs.delete(:value))
-      @attributes = (attrs || {})
+    def self.build(tag_name, **attrs, &block)
+      if block_given?
+        render_paired(tag_name, attrs, &block)
+      else
+        render_self_closing(tag_name, attrs)
+      end
     end
 
-    def to_s
-      return render_select_option if name == :option
-      return render_self_closing if SELF_CLOSING.include?(name.to_sym)
-
-      render_closing
+    def self.render_self_closing(name, attributes)
+      "<#{stringify_open_tag(name, attributes)}>"
     end
 
-    private
-
-    def render_self_closing
-      tag_attrs = attributes.map { |key, value| %(#{key}="#{value}") }
-      tag_attrs << "value=\"#{values.first}\"" if values.first
-      ["<#{name}", *tag_attrs, '/>'].compact.join(' ')
+    def self.render_paired(name, attributes)
+      inner_html = yield
+      "<#{stringify_open_tag(name, attributes)}>#{inner_html}</#{name}>"
     end
 
-    def render_closing
-      string_values = values.map(&:to_s)
-      tag_attrs = attributes.filter { |key, _v| key != :value }.map { |key, value| %(#{key}="#{value}") }.join(' ')
-      ["<#{name} #{tag_attrs}>", *string_values, "</#{name}>"].join
+    def self.stringify_open_tag(name, attributes)
+      attributes.map { |key, value| %(#{key}="#{value}") }
+                .prepend(name)
+                .compact
+                .join(' ')
     end
 
-    def render_select_option
+    def self.render_select_option
       tag_attrs = attributes.map { |key, value| %(#{key}="#{value}") }
       value = values.first
       tag_attrs << "value=\"#{value}\""
