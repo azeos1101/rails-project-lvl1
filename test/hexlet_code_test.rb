@@ -16,7 +16,7 @@ class HexletCodeTest < Minitest::Test
 
   def test_blank_hexlet_codeeration
     expected_html = '<form action="/users/new" method="post"></form>'
-    result_form = form_for @user, url: '/users/new'
+    result_form = HexletCode.form_for @user, url: '/users/new'
 
     assert_equal expected_html, result_form
   end
@@ -25,7 +25,7 @@ class HexletCodeTest < Minitest::Test
     expected_html = '<form action="/users/new" method="post">'\
                       '<input name="user_test[name]" id="user_test_name" type="text" value="Vasya" />'\
                     '</form>'
-    result_form = form_for @user, url: '/users/new' do |f|
+    result_form = HexletCode.form_for @user, url: '/users/new' do |f|
       f.input :name
     end
 
@@ -37,7 +37,7 @@ class HexletCodeTest < Minitest::Test
                       '<input name="user_test[id]" id="user_test_id" type="hidden" value="12345" />'\
                       '<input name="user_test[name]" id="user_test_name" type="text" value="Vasya" />'\
                     '</form>'
-    result_form = form_for @user, url: '/users/new' do |f|
+    result_form = HexletCode.form_for @user, url: '/users/new' do |f|
       f.input :id
       f.input :name
     end
@@ -53,7 +53,7 @@ class HexletCodeTest < Minitest::Test
                       '</textarea>'\
                     '</form>'
 
-    result_form = form_for @user, url: '/users/new' do |f|
+    result_form = HexletCode.form_for @user, url: '/users/new' do |f|
       f.input :name
       f.input :description, as: :text
     end
@@ -72,7 +72,7 @@ class HexletCodeTest < Minitest::Test
                       '</select>'\
                     '</form>'
 
-    result_form = form_for @user, url: '#' do |f|
+    result_form = HexletCode.form_for @user, url: '#' do |f|
       f.input :name
       f.input :age, as: :select, collection: 18..20
     end
