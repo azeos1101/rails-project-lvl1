@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module FormGen
+module HexletCode
   class Tag
     # List of self closing elements
     # https://www.w3.org/TR/2011/WD-html-markup-20110113/syntax.html#syntax-elements

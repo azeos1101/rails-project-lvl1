@@ -2,8 +2,8 @@
 
 require 'test_helper'
 
-class FormGenTest < Minitest::Test
-  include FormGen
+class HexletCodeTest < Minitest::Test
+  include HexletCode
 
   def setup
     super
@@ -11,10 +11,10 @@ class FormGenTest < Minitest::Test
   end
 
   def test_that_it_has_a_version_number
-    refute_nil ::FormGen::VERSION
+    refute_nil ::HexletCode::VERSION
   end
 
-  def test_blank_form_generation
+  def test_blank_hexlet_codeeration
     expected_html = '<form action="/users/new" method="post"></form>'
     result_form = form_for @user, url: '/users/new'
 

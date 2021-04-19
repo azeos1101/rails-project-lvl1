@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-# require ''
-
-module FormGen
+module HexletCode
   class Form
     attr_reader :tag, :attributes, :record
 

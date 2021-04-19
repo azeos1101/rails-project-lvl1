@@ -1,12 +1,10 @@
 # frozen_string_literal: true
 
-require 'form_gen/version'
-require 'form_gen/tag'
-require 'form_gen/form'
+require 'hexlet_code/version'
+require 'hexlet_code/tag'
+require 'hexlet_code/form'
 
-module FormGen
-  class Error < StandardError; end
-
+module HexletCode
   def form_for(record, attrs)
     form = Form.new(record: record, **attrs)
     yield form if block_given?

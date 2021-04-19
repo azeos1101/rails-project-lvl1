@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 
-module FormGen
+module HexletCode
   VERSION = '0.0.1'
 end

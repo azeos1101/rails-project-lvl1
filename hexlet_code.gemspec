@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require_relative 'lib/form_gen/version'
+require_relative 'lib/hexlet_code/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'azeos-form-gen-lvl1'
-  spec.version       = FormGen::VERSION
+  spec.name          = 'hexlet_code'
+  spec.version       = HexletCode::VERSION
   spec.authors       = ['Dmitriy Pavlenko']
   spec.email         = ['azeos1101@ya.ru']
 

@@ -2,10 +2,10 @@
 
 require 'test_helper'
 
-module FormGen
+module HexletCode
   class FormTest < Minitest::Test
     def test_generation_blank_form
-      form = FormGen::Form.new
+      form = HexletCode::Form.new
 
       assert_equal '<form action="#" method="post"></form>', form.to_s
     end
