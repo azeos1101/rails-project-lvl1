@@ -16,11 +16,12 @@ module HexletCode
     end
 
     def submit
-      inner_tags << Tag.build(:input, type: 'submit', value: 'Save', name: 'commit') # wtf 'commit' ?
+      inner_tags << Tag.build(:input, type: 'submit', value: 'Save', name: 'commit')
     end
 
     def input(attr_name, **attrs)
-      new_attrs = attrs.merge(type: 'text', value: record[attr_name], name: attr_name)
+      inner_tags << Tag.build(:label, for: attr_name) { attr_name.to_s.capitalize.gsub('_', ' ') }
+      new_attrs = attrs.merge(type: 'text', value: record[attr_name], name: attr_name, id: attr_name)
       inner_tags << Tag.build(:input, **new_attrs)
     end
 
