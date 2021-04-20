@@ -19,10 +19,16 @@ module HexletCode
       inner_tags << Tag.build(:input, type: 'submit', value: 'Save', name: 'commit')
     end
 
-    def input(attr_name, **attrs)
-      inner_tags << Tag.build(:label, for: attr_name) { attr_name.to_s.capitalize.gsub('_', ' ') }
-      new_attrs = attrs.merge(type: 'text', value: record[attr_name], name: attr_name, id: attr_name)
-      inner_tags << Tag.build(:input, **new_attrs)
+    def input(attr_name, as: :input, **attrs)
+      label = Tag.build(:label, for: attr_name) { attr_name.to_s.capitalize.gsub('_', ' ') }
+      input_tag = if as == :text
+                    Tag.build(:textarea, name: attr_name, id: attr_name) { record[attr_name] }
+                  else
+                    new_attrs = attrs.merge(type: 'text', value: record[attr_name], name: attr_name, id: attr_name)
+                    Tag.build(:input, **new_attrs)
+                  end
+      inner_tags << label
+      inner_tags << input_tag
     end
 
     private

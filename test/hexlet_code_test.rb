@@ -18,10 +18,10 @@ class HexletCodeTest < Minitest::Test
   end
 
   def test_form_with_input
-    user = User.new(name: 'rob')
+    user = User.new(name: 'rob', job: 'Some job')
     result_form = HexletCode.form_for user do |f|
       f.input :name
-      f.input :job
+      f.input :job, as: :text
     end
 
     assert_equal expected_form_html, result_form
@@ -35,7 +35,7 @@ class HexletCodeTest < Minitest::Test
         <label for="name">Name</label>
         <input type="text" value="rob" name="name" id="name">
         <label for="job">Job</label>
-        <input type="text" value="" name="job" id="job">
+        <textarea name="job" id="job">Some job</textarea>
       </form>
     HTML
   end
