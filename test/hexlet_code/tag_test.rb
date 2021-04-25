@@ -13,7 +13,7 @@ module HexletCode
     def test_generation_valid_closing_tag
       br = HexletCode::Tag.build(:br)
       span = HexletCode::Tag.build(:span, id: 'my_span') { 'some span text' }
-      div = HexletCode::Tag.build(:div, class: 'col-xs-1') { [br, span].join }
+      div = HexletCode::Tag.build(:div, class: 'col-xs-1') { [br, span] }
 
       expected_html = <<~HTML
         <div class="col-xs-1">
