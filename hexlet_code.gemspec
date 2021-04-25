@@ -25,12 +25,5 @@ Gem::Specification.new do |spec|
   spec.bindir        = 'exe'
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
-  # Runtime dependencies
   spec.add_runtime_dependency 'activesupport', '~> 5.0'
-  # Dev dependencies
-  spec.add_development_dependency 'fasterer'
-  spec.add_development_dependency 'minitest', '~> 5.0'
-  spec.add_development_dependency 'overcommit'
-  spec.add_development_dependency 'rake', '~> 12.0'
-  spec.add_development_dependency 'rubocop'
 end
