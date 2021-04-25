@@ -15,9 +15,14 @@ module HexletCode
       span = HexletCode::Tag.build(:span, id: 'my_span') { 'some span text' }
       div = HexletCode::Tag.build(:div, class: 'col-xs-1') { [br, span].join }
 
-      expected_html = '<div class="col-xs-1"><br><span id="my_span">some span text</span></div>'
+      expected_html = <<~HTML
+        <div class="col-xs-1">
+          <br>
+          <span id="my_span">some span text</span>
+        </div>
+      HTML
 
-      assert_equal expected_html, div
+      assert_equal normalize_html(expected_html), div
     end
 
     def test_tag_generations

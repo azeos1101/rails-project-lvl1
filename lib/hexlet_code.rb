@@ -3,7 +3,7 @@
 module HexletCode
   autoload :Tag, 'hexlet_code/tag.rb'
   autoload :Form, 'hexlet_code/form.rb'
-  # autoload :VERSION, 'hexlet_code/version.rb'
+  autoload :VERSION, 'hexlet_code/version.rb'
 
   def self.form_for(record, **attrs)
     form = Form.new(record: record, **attrs)

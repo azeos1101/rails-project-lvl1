@@ -5,14 +5,14 @@ require 'test_helper'
 class HexletCodeTest < Minitest::Test
   User = Struct.new(:name, :job, keyword_init: true)
 
-  # def test_that_it_has_a_version_number
-  #   refute_nil ::HexletCode::VERSION
-  # end
+  def test_that_it_has_a_version_number
+    refute_nil ::HexletCode::VERSION
+  end
 
   def test_blank_hexlet_codegeration
     user = User.new(name: 'Vasya', job: 'Dev')
 
-    expected_html = '<form action="#" method="post"></form>'
+    expected_html = normalize_html('<form action="#" method="post"></form>')
     # rubocop:disable Lint/EmptyBlock
     result_form = HexletCode.form_for user do |f|
     end
@@ -28,13 +28,13 @@ class HexletCodeTest < Minitest::Test
       f.input :job, as: :text
     end
 
-    assert_equal expected_form_html, result_form
+    assert_equal normalize_html(expected_form_html), result_form
   end
 
   private
 
   def expected_form_html
-    <<~HTML.strip.gsub(/(^\s+)|(\n)/, '')
+    <<~HTML
       <form action="#" method="post">
         <label for="name">Name</label>
         <input type="text" value="rob" name="name" id="name">
