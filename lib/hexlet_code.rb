@@ -1,11 +1,10 @@
 # frozen_string_literal: true
 
-require 'active_support'
-require 'hexlet_code/version'
-require 'hexlet_code/tag'
-require 'hexlet_code/form'
-
 module HexletCode
+  autoload :Tag, 'hexlet_code/tag.rb'
+  autoload :Form, 'hexlet_code/form.rb'
+  autoload :VERSION, 'hexlet_code/version.rb'
+
   def self.form_for(record, **attrs)
     form = Form.new(record: record, **attrs)
     yield form if block_given?

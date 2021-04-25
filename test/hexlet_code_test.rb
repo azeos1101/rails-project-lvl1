@@ -5,6 +5,10 @@ require 'test_helper'
 class HexletCodeTest < Minitest::Test
   User = Struct.new(:name, :job, keyword_init: true)
 
+  def test_that_it_has_a_version_number
+    refute_nil ::HexletCode::VERSION
+  end
+
   def test_blank_hexlet_codegeration
     user = User.new(name: 'Vasya', job: 'Dev')
 

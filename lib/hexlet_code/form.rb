@@ -1,6 +1,10 @@
 # frozen_string_literal: true
 
+require 'active_support'
+
 module HexletCode
+  autoload :Tag, 'hexlet_code/tag.rb'
+
   class Form
     attr_reader :attributes, :record
     attr_accessor :inner_tags
